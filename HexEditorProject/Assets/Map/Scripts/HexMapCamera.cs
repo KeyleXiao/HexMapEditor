@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Component that controls the singleton camera that navigates the hex map.
@@ -53,19 +54,44 @@ public class HexMapCamera : MonoBehaviour
 		ValidatePosition();
 	}
 
-	void Update()
-	{
-		float zoomDelta = Input.GetAxis("Mouse ScrollWheel");
-		if (zoomDelta != 0f)
-		{
-			AdjustZoom(zoomDelta);
-		}
+	private bool Mouse1FirstDown;
+	private Vector3 forcusPoint;
 
-		float rotationDelta = Input.GetAxis("Rotation");
-		if (rotationDelta != 0f)
+    void Update()
+	{
+		//float zoomDelta = Input.GetAxis("Mouse ScrollWheel");
+		//if (zoomDelta != 0f)
+		//{
+		//	AdjustZoom(zoomDelta);
+		//}
+		//TODO: NEED X ROTATION
+		if (Input.GetKey(KeyCode.Mouse1))
 		{
-			AdjustRotation(rotationDelta);
-		}
+			if (Mouse1FirstDown)
+			{
+				forcusPoint = Input.mousePosition;
+			}
+
+			var dis = Vector3.Distance(Input.mousePosition, forcusPoint);
+
+			if (Input.mousePosition.x > forcusPoint.x)
+				AdjustRotation(dis);//right
+			else
+				AdjustRotation(-dis);
+
+            forcusPoint = Input.mousePosition;
+        }
+		else 
+		{
+			Mouse1FirstDown = false;
+        }
+
+        float yDelta = Input.GetAxis("Rotation");
+		if (yDelta != 0)
+		{
+            //AdjustRotation(rotationDelta);
+            AdjustPosition(0,0, yDelta);
+        }
 
 		float xDelta = Input.GetAxis("Horizontal");
 		float zDelta = Input.GetAxis("Vertical");
@@ -100,12 +126,13 @@ public class HexMapCamera : MonoBehaviour
 		transform.localRotation = Quaternion.Euler(0f, rotationAngle, 0f);
 	}
 
-	void AdjustPosition(float xDelta, float zDelta)
+	void AdjustPosition(float xDelta, float zDelta , float yDelta = 0)
 	{
 		Vector3 direction =
 			transform.localRotation *
-			new Vector3(xDelta, 0f, zDelta).normalized;
-		float damping = Mathf.Max(Mathf.Abs(xDelta), Mathf.Abs(zDelta));
+			new Vector3(xDelta, yDelta, zDelta).normalized;
+		float damping = Mathf.Max(Mathf.Abs(xDelta), Mathf.Abs(yDelta),Mathf.Abs(zDelta)); //xiaonian：Y轴移动
+
 		float distance =
 			Mathf.Lerp(moveSpeedMinZoom, moveSpeedMaxZoom, zoom) *
 			damping * Time.deltaTime;
