@@ -8,12 +8,12 @@ jobs:
     - uses: kuler90/setup-unity@v1.1.0
     - name: Setup Unity
       with:
-        project-path: https://github.com/KeyleXiao/HexMapEditor/HexEditorProject/
+        project-path: ./HexEditorProject/
         unity-version: 2023.2.17f1c1
     - name: Build Unity Project
       uses: game-ci/unity-builder@v4.2.3
       with:
-        project-path: https://github.com/KeyleXiao/HexMapEditor/HexEditorProject/
+        project-path: ./HexEditorProject/
         platform: standalone
         build-target: windows-mono
         build-name: HexEditor
