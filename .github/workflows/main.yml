@@ -23,14 +23,23 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      # Get license
-      - name: Unity License Activation (XRTK)
-        uses: XRTK/activate-unity-license@v5
+      # # Get license
+      # - name: Unity License Activation (XRTK)
+      #   uses: XRTK/activate-unity-license@v5
+      #   with:
+      #     # Unity Username
+      #     username: keylexiao@gmail.com
+      #     # Unity Password
+      #     password: Xiaonian520!
+
+      - name: Unity - Activate
+        # You may pin to the exact commit or the version.
+        # uses: game-ci/unity-activate@33cd3ea96f11f3a1ddcf8fa9d8d265d5ea81e240
+        uses: game-ci/unity-activate@v2.0.0
         with:
-          # Unity Username
-          username: keylexiao@gmail.com
-          # Unity Password
-          password: Xiaonian520!
+          # Version of unity to use for building the project.
+          unityVersion: 2023.2.17f1c1 # optional, default is 2019.2.11f1
+          
 
       # Cache
       - name: Cache
