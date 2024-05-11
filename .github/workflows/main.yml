@@ -7,7 +7,6 @@ jobs:
     steps:
     - uses: kuler90/setup-unity@v1.1.0
     - name: Setup Unity
-      uses: game-ci/setup-unity@v1
       with:
         project-path: ./HexEditorProject/
         unity-version: 2023.2.17f1c1
@@ -16,5 +15,5 @@ jobs:
       with:
         project-path: ./HexEditorProject/
         platform: standalone
-        build-target: Windows
+        build-target: windows-mono
         build-name: HexEditor
