@@ -23,6 +23,22 @@ jobs:
           fetch-depth: 0
           lfs: true
 
+      - name: Unity License Activation (XRTK)
+      # You may pin to the exact commit or the version.
+      # uses: XRTK/activate-unity-license@3b0beac847c0c578741347a3a724c1a92c290698
+      uses: XRTK/activate-unity-license@v5
+      with:
+        # Unity Username
+        username: keyle_xiao@hotmail.com
+        # Unity Password
+        password: Xiaonian520.
+        # Unity Serial (Only used for Professional license type)
+        serial: # optional, default is 
+        # License type to activate (professional or personal)
+        license-type: # optional, default is Personal
+        # 2FA (Authenticator App) key
+        auth-key: # optional, default is 
+
       # Cache
       - name: Cache
         uses: actions/cache@v2
@@ -31,6 +47,7 @@ jobs:
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
 
+      
       # Build
       - name: Build
         uses: game-ci/unity-builder@v4.2.3
