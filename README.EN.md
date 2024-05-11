@@ -1,4 +1,5 @@
 
+[中文README](https://github.com/KeyleXiao/HexMapEditor/blob/main/README.EN.md)
 # Hexagonal Grid Map Editor
 Original project link: https://catlikecoding.com/unity/hex-map/3-3-0/ 
 
