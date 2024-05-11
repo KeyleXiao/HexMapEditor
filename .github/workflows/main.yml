@@ -15,7 +15,7 @@ jobs:
     - name: Build Unity Project
       uses: game-ci/unity-builder@v4.2.3
       with:
-        project-path: .
+        project-path: ./HexEditorProject
         platform: standalone
         build-target: Windows
         build-name: HexEditor
