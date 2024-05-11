@@ -1,7 +1,7 @@
 # 六边形网格地图编辑器
 原始项目链接： https://catlikecoding.com/unity/hex-map/3-3-0/
 bitbucket链接：https://bitbucket.org/catlikecoding-projects/workspace/projects/HM
-感谢 ![jasper-flick](https://catlikecoding.com/jasper-flick/) 的分享精神!
+感谢 [jasper-flick](https://catlikecoding.com/jasper-flick/) 的分享精神!
 
 
 # 编辑器开发日志：
