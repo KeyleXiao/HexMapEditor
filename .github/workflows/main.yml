@@ -28,9 +28,9 @@ jobs:
         uses: XRTK/activate-unity-license@v5
         with:
           # Unity Username
-          username: keyle_xiao@hotmail.com
+          username: keylexiao@gmail.com
           # Unity Password
-          password: Xiaonian520.
+          password: Xiaonian520!
 
       # Cache
       - name: Cache
