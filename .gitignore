@@ -12,3 +12,7 @@ ApiUpdaterCheck.txt
 *.dwlt
 
 UserSettings/
+
+# Ignore temporaries from GameCI
+/[Aa]rtifacts/
+/[Cc]odeCoverage/
