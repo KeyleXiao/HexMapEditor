@@ -10,8 +10,9 @@ Thank you for [jasper-flick](https://catlikecoding.com/jasper-flick/) sharing sp
 
 # Editor development log:
 1. Add local storage path
+2. Modify camera movement method(WASD/QE(Up&Down)/Press MouseRightButton to rotate camera)
+
 # Development path
 1. Optimize editor layout UI
 2. Add map brush preview
-3. Modify camera movement method
-4. Optimize local effects and add demo units
+3. Optimize local effects and add demo units
