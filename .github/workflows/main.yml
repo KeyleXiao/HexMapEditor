@@ -1,6 +1,6 @@
 name: Build Unity Project
 
-on: push
+# on: push
 
 jobs:
   build:
