@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: game-ci/unity-builder@v4.2.3
+    - uses: kuler90/setup-unity@v1.1.0
     - name: Setup Unity
       uses: game-ci/setup-unity@v1
       with:
