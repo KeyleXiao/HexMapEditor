@@ -23,29 +23,20 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      # # Get license
-      # - name: Unity License Activation (XRTK)
-      #   uses: XRTK/activate-unity-license@v5
-      #   with:
-      #     # Unity Username
-      #     username: keylexiao@gmail.com
-      #     # Unity Password
-      #     password: Xiaonian520!
-
-      # Request manual activation file
-      - name: Request manual activation file
-        id: getManualLicenseFile
-        uses: game-ci/unity-request-activation-file@v2
-      # Upload artifact (Unity_v20XX.X.XXXX.alf)
-      - name: Expose as artifact
-        uses: actions/upload-artifact@v2
+      - uses: xrtk/unity-setup@v7
         with:
-          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
-      # Activate?? This is the code snippet Github Actions Marketplace gives us.
-      - name: Unity - Activate
-        id: activateLicence
-        uses: game-ci/unity-activate@v1.3
+          build-targets: ${{ matrix.build-target }}
+
+        # Activates the installation with the provided credentials
+      - uses: xrtk/activate-unity-license@v5.1
+        with:
+          # Required
+          username: keylexiao@gmail.com
+          password: Xiaonian520!
+          # Optional
+          license-type: 'Professional' # Chooses license type to use [ Personal, Professional ]
+          serial: ${{ secrets.UNITY_SERIAL }} # Required for pro/plus activations
+          auth-key: ${{ secrets.UNITY_2FA_KEY }} # required for personal activations
             
 
       # Cache
