@@ -1,21 +1,47 @@
-name: Build Unity Project
+name: Build
 
-on: push
+on:
+  pull_request: {}
+  push: { branches: [main] }
 
 jobs:
   build:
+    name: ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows # Build a Windows standalone.
 
     steps:
-    - uses: kuler90/setup-unity@v1.1.0
-    - name: Setup Unity
-      with:
-        project-path: /HexEditorProject/
-        unity-version: 2023.2.17f1c1
-    - name: Build Unity Project
-      uses: game-ci/unity-builder@v4.2.3
-      with:
-        project-path: /HexEditorProject/
-        platform: standalone
-        build-target: windows-mono
-        build-name: HexEditor
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      # Cache
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+
+      # Build
+      - name: Build
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      # Upload Build
+      - name: Upload Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
