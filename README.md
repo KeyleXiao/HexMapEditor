@@ -6,7 +6,7 @@ Original project link: https://catlikecoding.com/unity/hex-map/3-3-0/
 Bitbucket link: https://bitbucket.org/catlikecoding-projects/workspace/projects/HM   
 
 
-Thank you for [jasper-flick](https://catlikecoding.com/jasper-flick/) sharing spirit!
+Thank's for [jasper-flick](https://catlikecoding.com/jasper-flick/) sharing spirit!
 
 # Editor development log:
 1. Add local storage path
