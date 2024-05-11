@@ -38,7 +38,7 @@ jobs:
         uses: game-ci/unity-activate@v2.0.0
         with:
           # Version of unity to use for building the project.
-          unityVersion: 2023.2.17f1 # optional, default is 2019.2.11f1
+          unityVersion: 2019.2.11f1 # optional, default is 2019.2.11f1
           
 
       # Cache
