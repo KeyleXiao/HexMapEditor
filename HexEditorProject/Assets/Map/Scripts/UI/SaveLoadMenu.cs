@@ -99,29 +99,31 @@ public class SaveLoadMenu : MonoBehaviour
 		}
 		string[] paths = null;
 
-#if UNITY_EDITOR
-        bool useDataFolder = true;
-#else
-		bool useDataFolder = false;
-#endif
+        //#if UNITY_EDITOR
+        //        bool useDataFolder = true;
+        //#else
+        //		bool useDataFolder = false;
+        //#endif
 
-        if (useDataFolder)
-		{
-            var saveFolder = Path.Combine(Application.dataPath, "Data", "maps");
-			if (!Directory.Exists(saveFolder))
-			{
-                Directory.CreateDirectory(saveFolder);
-				return;
-            }
-			else
-				paths = Directory.GetFiles(saveFolder, "*.map");
-        }
-		else 
-		{
-            paths = Directory.GetFiles(Application.persistentDataPath, "*.map");
-        }
+        //        if (useDataFolder)
+        //		{
+        //            var saveFolder = Path.Combine(Application.datauseDataFolderPath, "Data", "maps");
+        //			if (!Directory.Exists(saveFolder))
+        //			{
+        //                Directory.CreateDirectory(saveFolder);
+        //				return;
+        //            }
+        //			else
+        //				paths = Directory.GetFiles(saveFolder, "*.map");
+        //        }
+        //		else 
+        //		{
+        //            paths = Directory.GetFiles(Application.persistentDataPath, "*.map");
+        //        }
 
-		Array.Sort(paths);
+        paths = Directory.GetFiles(HexEditorConfig.GetInstance().ExportConfigFolder, "*.map");
+
+        Array.Sort(paths);
 		for (int i = 0; i < paths.Length; i++)
 		{
 			SaveLoadItem item = Instantiate(itemPrefab);
@@ -144,22 +146,23 @@ public class SaveLoadMenu : MonoBehaviour
 			return null;
 		}
 
-#if UNITY_EDITOR
-        bool useDataFolder = true;
-#else
-		bool useDataFolder = false;
-#endif
+        //#if UNITY_EDITOR
+        //        bool useDataFolder = true;
+        //#else
+        //		bool useDataFolder = false;
+        //#endif
 
-        if (useDataFolder)
-		{
-			var saveFolder = Path.Combine(Application.dataPath, "Data","maps");
-			if (!Directory.Exists(saveFolder))
-				Directory.CreateDirectory(saveFolder);
+        //        if (useDataFolder)
+        //		{
+        //			var saveFolder = Path.Combine(Application.dataPath, "Data","maps");
+        //			if (!Directory.Exists(saveFolder))
+        //				Directory.CreateDirectory(saveFolder);
 
-            return Path.Combine(saveFolder, mapName + ".map");
-        }
-		return Path.Combine(Application.persistentDataPath, mapName + ".map");
-	}
+        //            return Path.Combine(saveFolder, mapName + ".map");
+        //        }
+        //		return Path.Combine(Application.persistentDataPath, mapName + ".map");
+        return Path.Combine(HexEditorConfig.GetInstance().ExportConfigFolder, mapName + ".map");
+    }
 
 	void Save (string path)
 	{

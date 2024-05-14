@@ -242,61 +242,59 @@ public class HexMapEditor : MonoBehaviour
 
 	void EditCell(HexCell cell)
 	{
-		if (cell)
-		{
-			if (activeTerrainTypeIndex >= 0)
-			{
-				cell.TerrainTypeIndex = activeTerrainTypeIndex;
-			}
-			if (applyElevation)
-			{
-				cell.Elevation = activeElevation;
-			}
-			if (applyWaterLevel)
-			{
-				cell.WaterLevel = activeWaterLevel;
-			}
-			if (applySpecialIndex)
-			{
-				cell.SpecialIndex = activeSpecialIndex;
-			}
-			if (applyUrbanLevel)
-			{
-				cell.UrbanLevel = activeUrbanLevel;
-			}
-			if (applyFarmLevel)
-			{
-				cell.FarmLevel = activeFarmLevel;
-			}
-			if (applyPlantLevel)
-			{
-				cell.PlantLevel = activePlantLevel;
-			}
-			if (riverMode == OptionalToggle.No)
-			{
-				cell.RemoveRiver();
-			}
-			if (roadMode == OptionalToggle.No)
-			{
-				cell.RemoveRoads();
-			}
-			if (walledMode != OptionalToggle.Ignore)
-			{
-				cell.Walled = walledMode == OptionalToggle.Yes;
-			}
-			if (isDrag && cell.TryGetNeighbor(
-				dragDirection.Opposite(), out HexCell otherCell)
-			)
-			{
-				if (riverMode == OptionalToggle.Yes)
-				{
-					otherCell.SetOutgoingRiver(dragDirection);
-				}
-				if (roadMode == OptionalToggle.Yes)
-				{
-					otherCell.AddRoad(dragDirection);
-				}
-			}
-		}
-	}
+		if (!cell) return;
+
+        if (activeTerrainTypeIndex >= 0)
+        {
+            cell.TerrainTypeIndex = activeTerrainTypeIndex;
+        }
+        if (applyElevation)
+        {
+            cell.Elevation = activeElevation;
+        }
+        if (applyWaterLevel)
+        {
+            cell.WaterLevel = activeWaterLevel;
+        }
+        if (applySpecialIndex)
+        {
+            cell.SpecialIndex = activeSpecialIndex;
+        }
+        if (applyUrbanLevel)
+        {
+            cell.UrbanLevel = activeUrbanLevel;
+        }
+        if (applyFarmLevel)
+        {
+            cell.FarmLevel = activeFarmLevel;
+        }
+        if (applyPlantLevel)
+        {
+            cell.PlantLevel = activePlantLevel;
+        }
+        if (riverMode == OptionalToggle.No)
+        {
+            cell.RemoveRiver();
+        }
+        if (roadMode == OptionalToggle.No)
+        {
+            cell.RemoveRoads();
+        }
+        if (walledMode != OptionalToggle.Ignore)
+        {
+            cell.Walled = walledMode == OptionalToggle.Yes;
+        }
+        if (isDrag && cell.TryGetNeighbor(dragDirection.Opposite(), out HexCell otherCell))
+        {
+            if (riverMode == OptionalToggle.Yes)
+            {
+                otherCell.SetOutgoingRiver(dragDirection);
+            }
+            if (roadMode == OptionalToggle.Yes)
+            {
+                otherCell.AddRoad(dragDirection);
+            }
+        }
+    }
+
 }
